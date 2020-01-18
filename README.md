@@ -1,6 +1,5 @@
 # house-remodeling-system
-#### A remodeling order system where user can choose to re-paint the house, order new wallpapers, carpets, tiles or doing new wood floor.
-## Classes heavily depend on protected & private class access modifiers to avoid data being manipulated by end users.
+### Classes heavily depend on protected & private class access modifiers to avoid data being manipulated by end users.
 
 User first enters basic info like name, phone number, address. 
 
