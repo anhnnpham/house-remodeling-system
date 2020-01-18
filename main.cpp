@@ -16,24 +16,23 @@
 
 int main()
 {
-    userBill firstBill;
+    userBill ptr;
+    // userInfo* ptr. new userBill();
     // class 1 userInfo
-    firstBill.setUserInformation();
+    ptr.setUserInformation();
 
     // class 2 userOrder
-    firstBill.getRoomChoice();
+    ptr.getRoomChoice();
      
-    int task = 0; // make task as a variable of enum task
     //the possible task list
+    int task = 0; // make task as a variable of enum task
     enum task {paint, wallpaper, carpet, tile, woodFloor};
-    float roomWidth = 0;
-    float roomDepth = 0;
-    float roomHeight = 0;
-    task = firstBill.getTaskAssignment();
-    firstBill.getRoomInformation(/* task, roomWidth, roomDepth, roomHeight */);
+
+    task = ptr.getTaskAssignment();
+    ptr.getRoomInformation(/* task, roomWidth, roomDepth, roomHeight */);
 
     //print the information of the user and room
-    firstBill.printJobInformation(/* userName, phoneNumber, userAddress, remodelRoom, task */);
+    ptr.printJobInformation(/* userName, phoneNumber, userAddress, remodelRoom, task */);
 
     // class 3 userBill
     float wallSurfaceArea = 0;
@@ -45,9 +44,9 @@ int main()
     if (task == paint or task == wallpaper)
     {
         //calculate and print the estimates for the wall coverings
-        firstBill.calcWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
-        firstBill.calcPaintCost();
-        firstBill.calcWallPaperCost();  
+        ptr.calcWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
+        ptr.calcPaintCost();
+        ptr.calcWallPaperCost();  
     }
     
     //if a floor is to be done, get the square footage of the room
@@ -55,10 +54,12 @@ int main()
     if (task == carpet or task == tile or task == woodFloor)
     {
         //calculate and print the estimates for the floor coverings
-        firstBill.calcFloorArea(/* roomWidth, roomDepth */);
-        firstBill.calcCarpetCost(/* floorArea */);
-        firstBill.calcTileCost(/* floorArea */);
-        firstBill.calcWoodFloorCost(/* floorArea */);
+        ptr.calcFloorArea(/* roomWidth, roomDepth */);
+        ptr.calcCarpetCost(/* floorArea */);
+        ptr.calcTileCost(/* floorArea */);
+        ptr.calcWoodFloorCost(/* floorArea */);
     }
+
+    // delete ptr    
     return 0;
 }

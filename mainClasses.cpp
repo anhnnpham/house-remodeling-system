@@ -1,5 +1,12 @@
 #include "main.hpp"
 
+//Cost of materials for the remodel
+const float PAINTCOST = .50;      //per square foot
+const float WALLPAPERCOST = 2.00; //per square foot
+const float CARPETCOST = 4.00;    //per square foot
+const float TILECOST = 5.50;      //per square foot
+const float WOODCOST = 6.00;      //per square foot
+
 class userInfo
 {
 protected:
@@ -23,13 +30,13 @@ void userInfo::setUserInformation(/* string &userNameInput, string &phoneNumberI
 
 class userOrder : public userInfo
 {
-protected:
+private:
     string room_;
     int task_;
+protected:
     float roomWidth_;
     float roomDepth_;
     float roomHeight_;
-
 public:
     void getRoomChoice();
     int getTaskAssignment();
@@ -73,7 +80,8 @@ void userOrder::getRoomInformation(/* int task, float &roomWidthInput, float &ro
 void userOrder::printJobInformation(/* string userName, string phoneNumber, string userAddress, string remodelRoom, int task */)
 { //print user information. This is the only place the
     //remodelRoom string is used
-    cout << "\nPreparing order for:\n" << userName_ << "\n";
+    cout << "\nPreparing order for:\n"
+         << userName_ << "\n";
     cout << phoneNumber_ << "\n";
     cout << userAddress_ << "\n";
 
@@ -118,6 +126,7 @@ private:
     float _totalCarpetCost;
     float _totalTileCost;
     float _totalWoodFloorCost;
+
 public:
     void calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */);
     void calcPaintCost(/* float wallSurfaceArea */);
@@ -129,8 +138,8 @@ public:
 };
 
 void userBill::calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */)
-{                                          //Calculate the wall surface area. Assume the room is rectangluar
-                                           //Assume the two walls opposite each other are the same
+{                                             //Calculate the wall surface area. Assume the room is rectangluar
+                                              //Assume the two walls opposite each other are the same
     wallWide_ = roomWidth_ * roomHeight_ * 2; //two walls
     wallDeep_ = roomDepth_ * roomHeight_ * 2; //two walls
     _wallSurfaceArea = wallWide_ + wallDeep_;
@@ -168,4 +177,3 @@ void userBill::calcWoodFloorCost(/* float floorArea */)
     _totalWoodFloorCost = WOODCOST * _roomArea;
     cout << "\n\tWood Estimate: $" << _totalWoodFloorCost;
 }
-
