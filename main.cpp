@@ -45,9 +45,9 @@ int main()
     if (task == paint or task == wallpaper)
     {
         //calculate and print the estimates for the wall coverings
-        wallSurfaceArea = firstBill.calcWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
-        firstBill.calcPaintCost(wallSurfaceArea);
-        firstBill.calcWallPaperCost(wallSurfaceArea);  
+        firstBill.calcWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
+        firstBill.calcPaintCost();
+        firstBill.calcWallPaperCost();  
     }
     
     //if a floor is to be done, get the square footage of the room
@@ -55,10 +55,10 @@ int main()
     if (task == carpet or task == tile or task == woodFloor)
     {
         //calculate and print the estimates for the floor coverings
-        floorArea = firstBill.calcFloorArea(/* roomWidth, roomDepth */);
-        firstBill.calcCarpetCost(floorArea);
-        firstBill.calcTileCost(floorArea);
-        firstBill.calcWoodFloorCost(floorArea);
+        firstBill.calcFloorArea(/* roomWidth, roomDepth */);
+        firstBill.calcCarpetCost(/* floorArea */);
+        firstBill.calcTileCost(/* floorArea */);
+        firstBill.calcWoodFloorCost(/* floorArea */);
     }
     return 0;
 }
