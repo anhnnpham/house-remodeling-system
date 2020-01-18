@@ -16,23 +16,23 @@
 
 int main()
 {
-    userBill ptr;
+    userBill customer;
     // userInfo* ptr. new userBill();
     // class 1 userInfo
-    ptr.setUserInformation();
+    customer.setUserInformation();
 
     // class 2 userOrder
-    ptr.getRoomChoice();
+    customer.setRoomChoice();
      
     //the possible task list
     int task = 0; // make task as a variable of enum task
     enum task {paint, wallpaper, carpet, tile, woodFloor};
 
-    task = ptr.getTaskAssignment();
-    ptr.getRoomInformation(/* task, roomWidth, roomDepth, roomHeight */);
+    task = customer.getTaskAssignment();
+    customer.setRoomInformation(/* task, roomWidth, roomDepth, roomHeight */);
 
     //print the information of the user and room
-    ptr.printJobInformation(/* userName, phoneNumber, userAddress, remodelRoom, task */);
+    customer.printJobInformation(/* userName, phoneNumber, userAddress, remodelRoom, task */);
 
     // class 3 userBill
     float wallSurfaceArea = 0;
@@ -44,9 +44,9 @@ int main()
     if (task == paint or task == wallpaper)
     {
         //calculate and print the estimates for the wall coverings
-        ptr.calcWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
-        ptr.calcPaintCost();
-        ptr.calcWallPaperCost();  
+        customer.setWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
+        customer.calcPaintCost();
+        customer.calcWallPaperCost();  
     }
     
     //if a floor is to be done, get the square footage of the room
@@ -54,10 +54,10 @@ int main()
     if (task == carpet or task == tile or task == woodFloor)
     {
         //calculate and print the estimates for the floor coverings
-        ptr.calcFloorArea(/* roomWidth, roomDepth */);
-        ptr.calcCarpetCost(/* floorArea */);
-        ptr.calcTileCost(/* floorArea */);
-        ptr.calcWoodFloorCost(/* floorArea */);
+        customer.setFloorArea(/* roomWidth, roomDepth */);
+        customer.calcCarpetCost(/* floorArea */);
+        customer.calcTileCost(/* floorArea */);
+        customer.calcWoodFloorCost(/* floorArea */);
     }
 
     // delete ptr    

@@ -38,20 +38,24 @@ protected:
     float roomDepth_;
     float roomHeight_;
 public:
-    void getRoomChoice();
-    int getTaskAssignment();
-    void getRoomInformation(/* int task, float &roomWidthInput, float &roomDepthInput, float &roomHeightInput */);
+    void setRoomChoice();
+    void setTaskAssignment();
+    void setRoomInformation(/* int task, float &roomWidthInput, float &roomDepthInput, float &roomHeightInput */);
     void printJobInformation(/* string userName, string phoneNumber, string userAddress, string remodelRoom, int task */);
     void printTask();
+    int getTaskAssignment()
+    {
+        return task_;
+    }
 };
 
-void userOrder::getRoomChoice()
+void userOrder::setRoomChoice()
 {
     cout << "What room are we remodeling?: \n";
     getline(std::cin, room_);
 }
 
-int userOrder::getTaskAssignment()
+void userOrder::setTaskAssignment()
 { //the possible task list
     std::cout << "What job needs to be done?\n";
     std::cout << "0: paint\n";
@@ -60,10 +64,9 @@ int userOrder::getTaskAssignment()
     std::cout << "3: tile\n";
     std::cout << "4: wood floor\n";
     cin >> task_;
-    return task_;
 }
 
-void userOrder::getRoomInformation(/* int task, float &roomWidthInput, float &roomDepthInput, float &roomHeightInput */)
+void userOrder::setRoomInformation(/* int task, float &roomWidthInput, float &roomDepthInput, float &roomHeightInput */)
 { //all the tasks require the width and depth.
     //wall treatments require the height also
     std::cout << "What is the room width? \n";
@@ -128,16 +131,16 @@ private:
     float _totalWoodFloorCost;
 
 public:
-    void calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */);
+    void setWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */);
     void calcPaintCost(/* float wallSurfaceArea */);
     void calcWallPaperCost(/* float wallSurfaceArea */);
-    void calcFloorArea(/* float roomWidth, float roomDepth */);
+    void setFloorArea(/* float roomWidth, float roomDepth */);
     void calcCarpetCost(/* float floorArea */);
     void calcTileCost(/* float floorArea */);
     void calcWoodFloorCost(/* float floorArea */);
 };
 
-void userBill::calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */)
+void userBill::setWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */)
 {                                             //Calculate the wall surface area. Assume the room is rectangluar
                                               //Assume the two walls opposite each other are the same
     wallWide_ = roomWidth_ * roomHeight_ * 2; //two walls
@@ -155,7 +158,7 @@ void userBill::calcWallPaperCost(/* float wallSurfaceArea */)
     std::cout << "\n\tWallpaper Estimate: $" << totalWallpaperCost_;
 }
 
-void userBill::calcFloorArea(/* float roomWidth, float roomDepth */)
+void userBill::setFloorArea(/* float roomWidth, float roomDepth */)
 {
     _roomArea = roomWidth_ * roomDepth_;
 }
