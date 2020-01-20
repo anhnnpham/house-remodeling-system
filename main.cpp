@@ -40,7 +40,7 @@ int main()
     if (task == paint or task == wallpaper)
     {
         //calculate and print the estimates for the wall coverings
-        customer.setWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
+        customer.calcWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
         customer.printPaintCost();
         customer.printWallPaperCost();  
     }
@@ -50,7 +50,7 @@ int main()
     if (task == carpet or task == tile or task == woodFloor)
     {
         //calculate and print the estimates for the floor coverings
-        customer.setFloorArea(/* roomWidth, roomDepth */);
+        customer.calcFloorArea(/* roomWidth, roomDepth */);
         customer.printCarpetCost(/* floorArea */);
         customer.printTileCost(/* floorArea */);
         customer.printWoodFloorCost(/* floorArea */);

@@ -131,16 +131,16 @@ private:
     float _totalWoodFloorCost;
 
 public:
-    void setWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */);
+    void calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */);
     void printPaintCost(/* float wallSurfaceArea */);
     void printWallPaperCost(/* float wallSurfaceArea */);
-    void setFloorArea(/* float roomWidth, float roomDepth */);
+    void calcFloorArea(/* float roomWidth, float roomDepth */);
     void printCarpetCost(/* float floorArea */);
     void printTileCost(/* float floorArea */);
     void printWoodFloorCost(/* float floorArea */);
 };
 
-void userBill::setWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */)
+void userBill::calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */)
 {                                             //Calculate the wall surface area. Assume the room is rectangluar
                                               //Assume the two walls opposite each other are the same
     wallWide_ = roomWidth_ * roomHeight_ * 2; //two walls
@@ -160,7 +160,7 @@ void userBill::printWallPaperCost(/* float wallSurfaceArea */)
     std::cout << "\n\tWallpaper Estimate: $" << totalWallpaperCost_;
 }
 
-void userBill::setFloorArea(/* float roomWidth, float roomDepth */)
+void userBill::calcFloorArea(/* float roomWidth, float roomDepth */)
 {
     _roomArea = roomWidth_ * roomDepth_;
 }
