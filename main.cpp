@@ -13,6 +13,7 @@ int main()
     int task = 0; // make int task a variable of enum task
     enum task {paint, wallpaper, carpet, tile, woodFloor};
 
+    customer.setTaskAssignment();
     task = customer.getTaskAssignment();
     customer.setRoomInformation();
 
@@ -42,6 +43,6 @@ int main()
         customer.printWoodFloorCost();
     }
 
-    // delete ptr    
+    // delete ptr // if using pointer as object
     return 0;
 }

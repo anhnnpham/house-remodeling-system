@@ -1,11 +1,11 @@
 #include "main.hpp"
 
 class userInfo
-{
+{   // base class for user information
 protected:
-    string userName_;
-    string phoneNumber_;
-    string userAddress_;
+    string _userName;
+    string _phoneNumber;
+    string _userAddress;
 
 public:
     void setUserInformation();
@@ -14,22 +14,22 @@ public:
 void userInfo::setUserInformation()
 {
     cout << "Customer Name: \n";
-    getline(std::cin, userName_);
+    getline(cin, _userName);
     cout << "Customer Phone Number: \n";
-    getline(std::cin, phoneNumber_);
+    getline(cin, _phoneNumber);
     cout << "Customer Address: \n";
-    getline(std::cin, userAddress_);
+    getline(cin, _userAddress);
 }
 
 class userOrder : public userInfo
-{
+{   // class for users' orders (dimensions, tasks to be done, etc.)
 private:
-    string room_;
-    int task_;
+    string _room;
+    int _task;
 protected:
-    float roomWidth_;
-    float roomDepth_;
-    float roomHeight_;
+    float _roomWidth;
+    float _roomDepth;
+    float _roomHeight;
 public:
     void setRoomChoice();
     void setTaskAssignment();
@@ -38,85 +38,83 @@ public:
     void printTask();
     int getTaskAssignment()
     {
-        return task_;
+        return _task;
     }
 };
 
 void userOrder::setRoomChoice()
-{
+{   // user selects the room to be repaired
     cout << "What room are we remodeling?: \n";
-    getline(std::cin, room_);
+    getline(cin, _room);
 }
 
 void userOrder::setTaskAssignment()
-{ //the possible task list
-    std::cout << "What job needs to be done?\n";
-    std::cout << "0: paint\n";
-    std::cout << "1: wallpaper\n";
-    std::cout << "2: carpet\n";
-    std::cout << "3: tile\n";
-    std::cout << "4: wood floor\n";
-    cin >> task_;
+{   //the possible task list
+    cout << "What job needs to be done?\n";
+    cout << "0: paint\n";
+    cout << "1: wallpaper\n";
+    cout << "2: carpet\n";
+    cout << "3: tile\n";
+    cout << "4: wood floor\n";
+    cin >> _task;
 }
 
 void userOrder::setRoomInformation()
-{ //all the tasks require the width and depth.
+{   //all the tasks require the width and depth.
     //wall treatments require the height also
-    std::cout << "What is the room width? \n";
-    std::cin >> roomWidth_;
-    std::cout << "What is the room depth? \n";
-    std::cin >> roomDepth_;
-    if (task_ == 0 or task_ == 1)
+    cout << "What is the room width? \n";
+    cin >> _roomWidth;
+    cout << "What is the room depth? \n";
+    cin >> _roomDepth;
+    if (_task == 0 or _task == 1) // if choosing "paint" or "wallpaper", enter also room's height
     {
-        std::cout << "What is the room height? \n";
-        std::cin >> roomHeight_;
+        cout << "What is the room height? \n";
+        cin >> _roomHeight;
     }
 }
 
 void userOrder::printJobInformation()
-{ //print user information. This is the only place the
-    //remodelRoom string is used
-    cout << "\nPreparing order for:\n"
-         << userName_ << "\n";
-    cout << phoneNumber_ << "\n";
-    cout << userAddress_ << "\n";
-
-    cout << "\tRemodeling the " << room_ << " with";
+{   //print user information.
+    cout << "\nPreparing order for:\n" << _userName << "\n";
+    cout << _phoneNumber << "\n";
+    cout << _userAddress << "\n";
     printTask();
 }
 
 void userOrder::printTask()
-{ //depending on which task was selected, print the corresponding string
-    switch (task_)
+{   //depending on which task was selected, print the corresponding descriptive string
+    cout << "\tRemodeling the " << _room << " with ";
+    switch (_task)
     {
     case 0:
-        std::cout << " paint ";
+        cout << "paint.";
         break;
     case 1:
-        std::cout << " wallpaper ";
+        cout << "wallpaper.";
         break;
     case 2:
-        std::cout << " carpet ";
+        cout << "carpet.";
         break;
     case 3:
-        std::cout << " tile ";
+        cout << "tile.";
         break;
     case 4:
-        std::cout << " wood floor ";
+        cout << "wood floor.";
         break;
     default:
-        std::cout << " Ivalid task ";
+        cout << "Invalid task.";
     }
 }
 
 class userBill : public userOrder
-{
+{   // class to calculate the estimates of all the work 
+    // that needs to be done
 private:
-    float wallWide_;
-    float wallDeep_;
+    float _wallWide;
+    float _wallDeep;
     float _wallSurfaceArea;
-    float totalPaintCost_;
-    float totalWallpaperCost_;
+    float _totalPaintCost;
+    float _totalWallpaperCost;
 
     float _roomArea;
     float _totalCarpetCost;
@@ -134,44 +132,44 @@ public:
 };
 
 void userBill::calcWallSurfaceArea()
-{                                             //Calculate the wall surface area. Assume the room is rectangluar
-                                              //Assume the two walls opposite each other are the same
-    wallWide_ = roomWidth_ * roomHeight_ * 2; //two walls
-    wallDeep_ = roomDepth_ * roomHeight_ * 2; //two walls
-    _wallSurfaceArea = wallWide_ + wallDeep_;
+{   //Calculate the wall surface area. Assume the room is rectangluar
+    //Assume the two walls opposite each other are the same
+    _wallWide = _roomWidth * _roomHeight * 2; //two walls
+    _wallDeep = _roomDepth * _roomHeight * 2; //two walls
+    _wallSurfaceArea = _wallWide + _wallDeep;
 }
 
 void userBill::printPaintCost()
-{ //cost estimates are simply surface area times material per sq. foot
-    totalPaintCost_ = PAINTCOST * _wallSurfaceArea;
-    std::cout << "\n\tPaint Estimate: $" << totalPaintCost_;
+{   //cost estimates are simply surface area times material per sq. foot
+    _totalPaintCost = PAINTCOST * _wallSurfaceArea;
+    cout << "\n\tPaint estimate: €" << _totalPaintCost;
 }
 
 void userBill::printWallPaperCost()
-{ //cost estimates are simply surface area times material per sq. foot
-    totalWallpaperCost_ = WALLPAPERCOST * _wallSurfaceArea;
-    std::cout << "\n\tWallpaper Estimate: $" << totalWallpaperCost_;
+{   //cost estimates are simply surface area times material per sq. foot
+    _totalWallpaperCost = WALLPAPERCOST * _wallSurfaceArea;
+    cout << "\n\tWallpaper estimate: €" << _totalWallpaperCost;
 }
 
 void userBill::calcFloorArea()
 {
-    _roomArea = roomWidth_ * roomDepth_;
+    _roomArea = _roomWidth * _roomDepth;
 }
 
 void userBill::printCarpetCost()
-{ //cost estimates are simply surface area times material per sq. foot
+{   //cost estimates are simply surface area times material per sq. foot
     _totalCarpetCost = CARPETCOST * _roomArea;
-    cout << "\n\tCarpet Estimate: $" << _totalCarpetCost;
+    cout << "\n\tCarpet estimate: €" << _totalCarpetCost;
 }
 
 void userBill::printTileCost()
-{ //cost estimates are simply surface area times material per sq. foot
+{   //cost estimates are simply surface area times material per sq. foot
     _totalTileCost = TILECOST * _roomArea;
-    cout << "\n\tTile Estimate: $" << _totalTileCost;
+    cout << "\n\tTile estimate: €" << _totalTileCost;
 }
 
 void userBill::printWoodFloorCost()
-{ //cost estimates are simply surface area times material per sq. foot
+{   //cost estimates are simply surface area times material per sq. foot
     _totalWoodFloorCost = WOODCOST * _roomArea;
-    cout << "\n\tWood Estimate: $" << _totalWoodFloorCost;
+    cout << "\n\tWood estimate: €" << _totalWoodFloorCost;
 }
