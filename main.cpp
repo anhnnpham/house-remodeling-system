@@ -17,7 +17,6 @@
 int main()
 {
     userBill customer;
-    // userInfo* ptr. new userBill();
     // class 1 userInfo
     customer.setUserInformation();
 
@@ -25,7 +24,7 @@ int main()
     customer.setRoomChoice();
      
     //the possible task list
-    int task = 0; // make task as a variable of enum task
+    int task = 0; // make int task a variable of enum task
     enum task {paint, wallpaper, carpet, tile, woodFloor};
 
     task = customer.getTaskAssignment();
@@ -35,9 +34,6 @@ int main()
     customer.printJobInformation(/* userName, phoneNumber, userAddress, remodelRoom, task */);
 
     // class 3 userBill
-    float wallSurfaceArea = 0;
-    float floorArea = 0;
-
     //If a wall treatment is to be done, get the wall surface area
     // & calculate (paint + wallpaper) costs
     //assume all four walls of the room are to be redone
@@ -45,8 +41,8 @@ int main()
     {
         //calculate and print the estimates for the wall coverings
         customer.setWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
-        customer.calcPaintCost();
-        customer.calcWallPaperCost();  
+        customer.printPaintCost();
+        customer.printWallPaperCost();  
     }
     
     //if a floor is to be done, get the square footage of the room
@@ -55,9 +51,9 @@ int main()
     {
         //calculate and print the estimates for the floor coverings
         customer.setFloorArea(/* roomWidth, roomDepth */);
-        customer.calcCarpetCost(/* floorArea */);
-        customer.calcTileCost(/* floorArea */);
-        customer.calcWoodFloorCost(/* floorArea */);
+        customer.printCarpetCost(/* floorArea */);
+        customer.printTileCost(/* floorArea */);
+        customer.printWoodFloorCost(/* floorArea */);
     }
 
     // delete ptr    

@@ -1,4 +1,5 @@
 #pragma once
+
 #ifndef MAIN_HPP
 
 #include <iostream>
