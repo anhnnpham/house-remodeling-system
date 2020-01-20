@@ -1,12 +1,5 @@
 #include "main.hpp"
 
-//Cost of materials for the remodel
-const float PAINTCOST = .50;      //per square foot
-const float WALLPAPERCOST = 2.00; //per square foot
-const float CARPETCOST = 4.00;    //per square foot
-const float TILECOST = 5.50;      //per square foot
-const float WOODCOST = 6.00;      //per square foot
-
 class userInfo
 {
 protected:
@@ -15,10 +8,10 @@ protected:
     string userAddress_;
 
 public:
-    void setUserInformation(/* string &userNameInput, string &phoneNumberInput, string &userAddressInput */);
+    void setUserInformation();
 };
 
-void userInfo::setUserInformation(/* string &userNameInput, string &phoneNumberInput, string &userAddressInput */)
+void userInfo::setUserInformation()
 {
     cout << "Customer Name: \n";
     getline(std::cin, userName_);
@@ -40,8 +33,8 @@ protected:
 public:
     void setRoomChoice();
     void setTaskAssignment();
-    void setRoomInformation(/* int task, float &roomWidthInput, float &roomDepthInput, float &roomHeightInput */);
-    void printJobInformation(/* string userName, string phoneNumber, string userAddress, string remodelRoom, int task */);
+    void setRoomInformation();
+    void printJobInformation();
     void printTask();
     int getTaskAssignment()
     {
@@ -66,7 +59,7 @@ void userOrder::setTaskAssignment()
     cin >> task_;
 }
 
-void userOrder::setRoomInformation(/* int task, float &roomWidthInput, float &roomDepthInput, float &roomHeightInput */)
+void userOrder::setRoomInformation()
 { //all the tasks require the width and depth.
     //wall treatments require the height also
     std::cout << "What is the room width? \n";
@@ -80,7 +73,7 @@ void userOrder::setRoomInformation(/* int task, float &roomWidthInput, float &ro
     }
 }
 
-void userOrder::printJobInformation(/* string userName, string phoneNumber, string userAddress, string remodelRoom, int task */)
+void userOrder::printJobInformation()
 { //print user information. This is the only place the
     //remodelRoom string is used
     cout << "\nPreparing order for:\n"
@@ -131,16 +124,16 @@ private:
     float _totalWoodFloorCost;
 
 public:
-    void calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */);
-    void printPaintCost(/* float wallSurfaceArea */);
-    void printWallPaperCost(/* float wallSurfaceArea */);
-    void calcFloorArea(/* float roomWidth, float roomDepth */);
-    void printCarpetCost(/* float floorArea */);
-    void printTileCost(/* float floorArea */);
-    void printWoodFloorCost(/* float floorArea */);
+    void calcWallSurfaceArea();
+    void printPaintCost();
+    void printWallPaperCost();
+    void calcFloorArea();
+    void printCarpetCost();
+    void printTileCost();
+    void printWoodFloorCost();
 };
 
-void userBill::calcWallSurfaceArea(/* float roomWidth, float roomDepth, float roomHeight */)
+void userBill::calcWallSurfaceArea()
 {                                             //Calculate the wall surface area. Assume the room is rectangluar
                                               //Assume the two walls opposite each other are the same
     wallWide_ = roomWidth_ * roomHeight_ * 2; //two walls
@@ -148,36 +141,36 @@ void userBill::calcWallSurfaceArea(/* float roomWidth, float roomDepth, float ro
     _wallSurfaceArea = wallWide_ + wallDeep_;
 }
 
-void userBill::printPaintCost(/* float wallSurfaceArea */)
+void userBill::printPaintCost()
 { //cost estimates are simply surface area times material per sq. foot
     totalPaintCost_ = PAINTCOST * _wallSurfaceArea;
     std::cout << "\n\tPaint Estimate: $" << totalPaintCost_;
 }
 
-void userBill::printWallPaperCost(/* float wallSurfaceArea */)
+void userBill::printWallPaperCost()
 { //cost estimates are simply surface area times material per sq. foot
     totalWallpaperCost_ = WALLPAPERCOST * _wallSurfaceArea;
     std::cout << "\n\tWallpaper Estimate: $" << totalWallpaperCost_;
 }
 
-void userBill::calcFloorArea(/* float roomWidth, float roomDepth */)
+void userBill::calcFloorArea()
 {
     _roomArea = roomWidth_ * roomDepth_;
 }
 
-void userBill::printCarpetCost(/* float floorArea */)
+void userBill::printCarpetCost()
 { //cost estimates are simply surface area times material per sq. foot
     _totalCarpetCost = CARPETCOST * _roomArea;
     cout << "\n\tCarpet Estimate: $" << _totalCarpetCost;
 }
 
-void userBill::printTileCost(/* float floorArea */)
+void userBill::printTileCost()
 { //cost estimates are simply surface area times material per sq. foot
     _totalTileCost = TILECOST * _roomArea;
     cout << "\n\tTile Estimate: $" << _totalTileCost;
 }
 
-void userBill::printWoodFloorCost(/* float floorArea */)
+void userBill::printWoodFloorCost()
 { //cost estimates are simply surface area times material per sq. foot
     _totalWoodFloorCost = WOODCOST * _roomArea;
     cout << "\n\tWood Estimate: $" << _totalWoodFloorCost;

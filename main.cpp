@@ -1,17 +1,3 @@
-/*Debug the program so that it executes correctly.
- **This program calculates floor or wall surface areas
- **For the purpose of remodeling estimates. 
- **It asks a user to enter their name, phone, address
- **Then enter the room they wish to remodel
- **The user is asked to select a task
- **then a material. 
- **The program will generate an estimate of 
- **the cost of the project. 
- **
- **The user inputs are in the input.txt file.*/
-
-// #include "main.hpp"
-// #include "mainFunctions.cpp"
 #include "mainClasses.cpp"
 
 int main()
@@ -28,10 +14,10 @@ int main()
     enum task {paint, wallpaper, carpet, tile, woodFloor};
 
     task = customer.getTaskAssignment();
-    customer.setRoomInformation(/* task, roomWidth, roomDepth, roomHeight */);
+    customer.setRoomInformation();
 
     //print the information of the user and room
-    customer.printJobInformation(/* userName, phoneNumber, userAddress, remodelRoom, task */);
+    customer.printJobInformation();
 
     // class 3 userBill
     //If a wall treatment is to be done, get the wall surface area
@@ -40,7 +26,7 @@ int main()
     if (task == paint or task == wallpaper)
     {
         //calculate and print the estimates for the wall coverings
-        customer.calcWallSurfaceArea(/* roomWidth, roomDepth, roomHeight */);
+        customer.calcWallSurfaceArea();
         customer.printPaintCost();
         customer.printWallPaperCost();  
     }
@@ -50,10 +36,10 @@ int main()
     if (task == carpet or task == tile or task == woodFloor)
     {
         //calculate and print the estimates for the floor coverings
-        customer.calcFloorArea(/* roomWidth, roomDepth */);
-        customer.printCarpetCost(/* floorArea */);
-        customer.printTileCost(/* floorArea */);
-        customer.printWoodFloorCost(/* floorArea */);
+        customer.calcFloorArea();
+        customer.printCarpetCost();
+        customer.printTileCost();
+        customer.printWoodFloorCost();
     }
 
     // delete ptr    
